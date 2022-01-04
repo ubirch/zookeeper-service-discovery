@@ -11,7 +11,9 @@ object App {
   def appName = "cat"
   def appDescription = "This is cat creator"
 
-  object Service extends ServiceDiscoverable[InstanceDetails] {
+  object Service extends RegisterableService[InstanceDetails] {
+    override val path: String = "/services"
+    override val zookeeperAddress: String = "localhost:2181"
     override val instanceDetails: InstanceDetails = new InstanceDetails(appDescription)
     override val uriSpec: UriSpec = new UriSpec(s"{scheme}://$appAddress:{port}")
     override val zookeeperCuratorClient: CuratorFramework = createClient

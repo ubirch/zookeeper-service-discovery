@@ -92,18 +92,6 @@
             <version>5.2.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-
         <!-- Scala -->
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -356,6 +344,7 @@
     </build>
 
     <modules>
+        <module>common</module>
         <module>discovery</module>
         <module>service</module>
     </modules>

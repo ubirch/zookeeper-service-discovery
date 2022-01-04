@@ -20,7 +20,7 @@ trait ZooKeeperCurator {
   )
 }
 
-trait RegisterableService[T] {
+trait Registerable[T] {
   curator: ZooKeeperCurator =>
 
   def path: String
@@ -29,6 +29,7 @@ trait RegisterableService[T] {
   def serviceRegistry: DiscoverableRegistry
 
   class DiscoverableRegistry(serviceName: String, address: String, port: Int)(implicit ct: ClassTag[T]) extends Closeable {
+
     val instance: ServiceInstance[T] =
       ServiceInstance.builder[T]
         .name(serviceName)
@@ -54,8 +55,30 @@ trait RegisterableService[T] {
   }
 }
 
-trait ServiceDiscoverable[T] extends ZooKeeperCurator with RegisterableService[T] {
-  override def zookeeperAddress: String = "localhost:2181"
-  override def path: String = "/services"
+trait Discoverable[T] {
+  curator: ZooKeeperCurator =>
+
+  def path: String
+  def discoverableRegistry: DiscoverableRegistry
+
+  class DiscoverableRegistry(implicit ct: ClassTag[T]) extends Closeable {
+
+    val serializer = new JsonInstanceSerializer(ct.runtimeClass.asInstanceOf[Class[T]])
+
+    val serviceDiscovery: ServiceDiscovery[T] =
+      ServiceDiscoveryBuilder.builder(ct.runtimeClass.asInstanceOf[Class[T]])
+        .client(curator.zookeeperCuratorClient)
+        .basePath(path)
+        .serializer(serializer)
+        .build()
+
+    def start(): Unit = serviceDiscovery.start()
+
+    override def close(): Unit = CloseableUtils.closeQuietly(serviceDiscovery)
+  }
 }
+
+trait RegisterableService[T] extends ZooKeeperCurator with Registerable[T]
+
+trait DiscoverableService[T] extends ZooKeeperCurator with Discoverable[T]
 
