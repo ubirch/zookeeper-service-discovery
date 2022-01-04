@@ -5,8 +5,13 @@ import com.ubirch.service.{ DiscoverableService, InstanceDetails }
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.utils.CloseableUtils
 
-import scala.io.StdIn
+import scala.io.{ Source, StdIn }
 import scala.jdk.CollectionConverters._
+import monix.execution.Scheduler.Implicits.global
+
+import scala.concurrent.duration._
+import scala.language.postfixOps
+import scala.util.Try
 
 object App {
 
@@ -25,8 +30,15 @@ object App {
     try {
       Discovery.zookeeperCuratorClient.start()
       Discovery.discoverableRegistry.start()
-      Discovery.catAppCache.start()
-      println(Discovery.catAppCache.getInstances.asScala)
+
+      global.scheduleWithFixedDelay(5 seconds, 2 seconds) {
+        Discovery.serviceDiscovery.queryForInstances(catApp).asScala.headOption.filter(_.isEnabled).map { si =>
+          val params = Map("scheme" -> "http".asInstanceOf[AnyRef], "port" -> si.getPort.asInstanceOf[AnyRef]).asJava
+          val url = si.buildUriSpec(params)
+          val _ = Try(Source.fromURL(url + "/create").getLines().toList).map(println)
+        }.getOrElse(println(catApp + " not available"))
+
+      }
 
       StdIn.readLine() // let it run until user presses return
 

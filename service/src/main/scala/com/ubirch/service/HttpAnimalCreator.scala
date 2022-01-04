@@ -6,6 +6,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 
+import java.time.Instant
 import scala.io.StdIn
 import scala.util.Random
 
@@ -22,7 +23,7 @@ trait HttpAnimalCreator {
     val route =
       path("create") {
         get {
-          complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "Cat :: " + Random.nextInt().abs))
+          complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString))
         }
       }
 

@@ -76,6 +76,8 @@ trait Discoverable[T] {
 
     override def close(): Unit = CloseableUtils.closeQuietly(serviceDiscovery)
   }
+
+  def serviceDiscovery: ServiceDiscovery[T] = discoverableRegistry.serviceDiscovery
 }
 
 trait RegisterableService[T] extends ZooKeeperCurator with Registerable[T]

@@ -79,6 +79,13 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>io.monix</groupId>
+            <artifactId>monix_${scala.major.version}</artifactId>
+            <version>3.4.0</version>
+            <type>pom</type>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-x-discovery -->
         <dependency>
             <groupId>org.apache.curator</groupId>
