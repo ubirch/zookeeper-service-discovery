@@ -28,15 +28,20 @@ object App {
   }
 
   def main(args: Array[String]): Unit = {
-    try {
-      Service.zookeeperCuratorClient.start()
-      Service.serviceRegistry.start()
-      Http.start()
-    } finally {
-      CloseableUtils.closeQuietly(Service.serviceRegistry)
-      CloseableUtils.closeQuietly(Service.zookeeperCuratorClient)
-    }
-
+    Service.zookeeperCuratorClient.start()
+    Service.serviceRegistry.start()
+    Http.start()
   }
+
+  def registerShutdownHooks(): Unit = {
+    Runtime.getRuntime.addShutdownHook(new Thread() {
+      override def run(): Unit = {
+        CloseableUtils.closeQuietly(Service.serviceRegistry)
+        CloseableUtils.closeQuietly(Service.zookeeperCuratorClient)
+      }
+    })
+  }
+
+  registerShutdownHooks()
 
 }

@@ -27,29 +27,34 @@ object App {
 
   def main(args: Array[String]): Unit = {
 
-    try {
-      Discovery.zookeeperCuratorClient.start()
-      Discovery.discoverableRegistry.start()
+    Discovery.zookeeperCuratorClient.start()
+    Discovery.discoverableRegistry.start()
 
-      global.scheduleWithFixedDelay(5 seconds, 2 seconds) {
-        Discovery.serviceDiscovery.queryForInstances(catApp).asScala.headOption.filter(_.isEnabled).map { si =>
-          val params = Map("scheme" -> "http".asInstanceOf[AnyRef], "port" -> si.getPort.asInstanceOf[AnyRef]).asJava
-          val url = si.buildUriSpec(params)
-          val _ = Try(Source.fromURL(url + "/create").getLines().toList).map(println)
-        }.getOrElse(println(catApp + " not available"))
+    global.scheduleWithFixedDelay(5 seconds, 2 seconds) {
+      Discovery.serviceDiscovery.queryForInstances(catApp).asScala.headOption.filter(_.isEnabled).map { si =>
+        val params = Map("scheme" -> "http".asInstanceOf[AnyRef], "port" -> si.getPort.asInstanceOf[AnyRef]).asJava
+        val url = si.buildUriSpec(params)
+        val _ = Try(Source.fromURL(url + "/create").getLines().mkString(" ")).map(println)
+      }.getOrElse(println(catApp + " not available"))
 
-      }
-
-      StdIn.readLine() // let it run until user presses return
-
-    } finally {
-      Discovery.catAppCache.close()
-      CloseableUtils.closeQuietly(Discovery.discoverableRegistry)
-      CloseableUtils.closeQuietly(Discovery.zookeeperCuratorClient)
     }
+
+    println(s"App running.\nPress RETURN to stop...")
+    StdIn.readLine() // let it run until user presses return
 
     ()
 
   }
+
+  def registerShutdownHooks(): Unit = {
+    Runtime.getRuntime.addShutdownHook(new Thread() {
+      override def run(): Unit = {
+        CloseableUtils.closeQuietly(Discovery.discoverableRegistry)
+        CloseableUtils.closeQuietly(Discovery.zookeeperCuratorClient)
+      }
+    })
+  }
+
+  registerShutdownHooks()
 
 }
