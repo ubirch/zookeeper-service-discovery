@@ -34,7 +34,7 @@ object App {
       Discovery.serviceDiscovery.queryForInstances(catApp).asScala.headOption.filter(_.isEnabled).map { si =>
         val params = Map("scheme" -> "http".asInstanceOf[AnyRef], "port" -> si.getPort.asInstanceOf[AnyRef]).asJava
         val url = si.buildUriSpec(params)
-        val _ = Try(Source.fromURL(url + "/create").getLines().mkString(" ")).map(println)
+        val _ = Try("Creating " + Source.fromURL(url + "/create").getLines().mkString(" ")).map(println)
       }.getOrElse(println(catApp + " not available"))
 
     }
