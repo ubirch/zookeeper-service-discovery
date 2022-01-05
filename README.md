@@ -11,7 +11,7 @@ Another very equally important concept in distributed services is leadership amo
 The project is organized into three modules:
 
 * `common`: it represents a collection of common tools. In particular, it provides, an abstraction on how to get started via [Apache Curator](https://curator.apache.org/).
-* `service`: it represents the service provider that offers an endpoint to create "cats". "Cats" created here are not fancy or anything. This service has a special function that will be only activated when the corresponding instance is has gained leadership over its kinds. This special function is the creation of yellow cats, otherwise, red cats are created.
+* `service`: it represents the service provider that offers an endpoint "create" to create "cats". "Cats" created here are not fancy or anything. This service has a special function that will be only activated when the corresponding instance is has gained leadership over its kinds. This special function is the creation of yellow cats, otherwise, red cats are created.
 * `discovery`: it represents the service consumer that calls on the service provider's endpoint to create cats.
 
 ## Flow of information for a service discovery
@@ -37,13 +37,15 @@ mvn clean package
 
 Run the service provider 1
 ```bash
-java -cp service/target/service-0.0.1.jar com.ubirch.service.App
+java -cp service/target/service-0.0.1.jar com.ubirch.service.App 8081
 ```
 
 Run the service provider 2 (Optional but cool for leadership purposes) 
 ```bash
-java -cp service/target/service-0.0.1.jar com.ubirch.service.App2
+java -cp service/target/service-0.0.1.jar com.ubirch.service.App 8082
 ```
+
+You can run multiple if wanted. Just change the port.
 
 Run the service consumer
 ```bash

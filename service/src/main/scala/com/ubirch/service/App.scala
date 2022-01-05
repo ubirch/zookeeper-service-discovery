@@ -58,24 +58,18 @@ class CatApp(appPort: Int, appAddress: String, appName: String, appDescription: 
 }
 
 object App {
-  val cat = new CatApp(8081, "localhost", "cat", "This is a cat creator")
-
-  import cat._
 
   def main(args: Array[String]): Unit = {
-    Service.zookeeperCuratorClient.start()
-    Service.serviceRegistry.start()
-    Service.leadership.start()
-    Http.start()
-  }
-}
 
-object App2 {
-  val cat = new CatApp(8082, "localhost", "cat", "This is a cat creator")
+    val port = args.toList match {
+      case List(p) => p.toInt
+      case _ => throw new IllegalArgumentException("No port provided. Please provide a port")
+    }
 
-  import cat._
+    val cat = new CatApp(port, "localhost", "cat", "This is a cat creator")
 
-  def main(args: Array[String]): Unit = {
+    import cat._
+
     Service.zookeeperCuratorClient.start()
     Service.serviceRegistry.start()
     Service.leadership.start()

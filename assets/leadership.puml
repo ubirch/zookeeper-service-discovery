@@ -5,11 +5,15 @@ autonumber
 
 participant ServiceProvider #99FF99
 participant Zookeeper #ffd966
-participant ServiceProvider_2 #9fc5e8
+participant ServiceProvider_2 #99FF99
 
 ServiceProvider -> Zookeeper: creates connection
 ServiceProvider -> Zookeeper: registers itself
 ServiceProvider -> Zookeeper: offers itself to be leader
+note left
+    Both service providers offer the same functionality
+    They represent different instances.
+end note
 ... ...
 ServiceProvider_2 -> Zookeeper: creates connection
 ServiceProvider_2 -> Zookeeper: registers itself
