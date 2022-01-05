@@ -60,3 +60,17 @@ However, if you stop the service provider, you shall see that the discovery serv
 ### Leadership selection
 
 By default, the first application that gets registered on Zookeeper will be the leader of the pack. By running two instances of the cats creator, you will see how it is possible for the apps to take leadership, and relinquish when exiting the pack. 
+
+Taking leadership
+
+![Taking leadership](assets/taking_leadership.png)
+
+Relinquishing leadership
+
+![Relinquishing leadership](assets/relinquish_leadership.png)
+
+Creating Yellow Cats changes instance as the leadership changes
+
+![Leadership on app with port 8081](assets/leadership_on_8081.png)
+
+![Leadership on app with port 8082](assets/leadership_on_8082.png)
