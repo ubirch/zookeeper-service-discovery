@@ -6,6 +6,14 @@ Service discovery is a required characteristic in distributed systems. Microserv
 
 Another very equally important concept in distributed services is leadership among microservices. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
 
+## Project structure
+
+The project is organized into three modules:
+
+* `common`: it represents a collection of common tools. In particular, it provides, an abstraction on how to get started via [Apache Curator](https://curator.apache.org/).
+* `service`: it represents the service provider that offers an endpoint to create "cats". "Cats" created here are not fancy or anything. This service has a special function that will be only activated when the corresponding instance is has gained leadership over its kinds. This special function is the creation of yellow cats, otherwise, red cats are created.
+* `discovery`: it represents the service consumer that calls on the service provider's endpoint to create cats.
+
 ## Flow of information for a service discovery
 
 The following image represents a configuration sequence for a service provider and a service consumer by means of using Zookeeper.
@@ -15,14 +23,6 @@ The following image represents a configuration sequence for a service provider a
 ## Flow of information for leadership
 
 ![Leadership](assets/leadership.png)
-
-## Project structure
-
-The project is organized into three modules:
-
-* `common`: it represents a collection of common tools. In particular, it provides, an abstraction on how to get started via [Apache Curator](https://curator.apache.org/).
-* `service`: it represents the service provider that offers an endpoint to create "cats". "Cats" created here are not fancy or anything. This service has a special function that will be only activated when the corresponding instance is has gained leadership over its kinds. This special function is the creation of yellow cats.
-* `discovery`: it represents the service consumer that calls on the service provider's endpoint to create cats.
 
 ## How to run
 

@@ -28,5 +28,6 @@ ServiceProvider -> Zookeeper: Relinquishes leadership
 Zookeeper -> ServiceProvider_2: Receives leadership
 ServiceProvider_2 -> ServiceProvider_2: Runs leader process
 ServiceProvider -> ServiceProvider: Runs follower process
+... ...
 
 @enduml

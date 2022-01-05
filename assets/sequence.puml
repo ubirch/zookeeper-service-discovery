@@ -5,7 +5,7 @@ autonumber
 
 participant ServiceProvider #99FF99
 participant Zookeeper #ffd966
-participant ServiceConsumer #9fc5e8
+participant ServiceConsumer
 
 note over ServiceConsumer, ServiceProvider
 Note that the ServiceProvider and ServiceConsumer don't have to follow

@@ -17,7 +17,7 @@ trait HttpCatCreator {
   def createYellowCat: Boolean
 
   def start(): Unit = {
-    implicit val system = ActorSystem(Behaviors.empty, "animal-creator-system")
+    implicit val system = ActorSystem(Behaviors.empty, "cat-creator-system")
     // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.executionContext
 
@@ -28,7 +28,7 @@ trait HttpCatCreator {
             if (createYellowCat) {
               "YELLOW Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
             } else {
-              "Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
+              "RED Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
             }
           }))
         }
