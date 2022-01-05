@@ -29,9 +29,14 @@ Compile the demo
 mvn clean package
 ```
 
-Run the service provider
+Run the service provider 1
 ```bash
 java -cp service/target/service-0.0.1.jar com.ubirch.service.App
+```
+
+Run the service provider 2 (Optional)
+```bash
+java -cp service/target/service-0.0.1.jar com.ubirch.service.App2
 ```
 
 Run the service consumer
