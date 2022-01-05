@@ -1,6 +1,7 @@
 package com.ubirch.service
 
 import org.apache.curator.framework.recipes.cache.CuratorCache
+import org.apache.curator.framework.recipes.leader.{ LeaderSelector, LeaderSelectorListenerAdapter }
 import org.apache.curator.framework.{ CuratorFramework, CuratorFrameworkFactory }
 import org.apache.curator.retry.ExponentialBackoffRetry
 import org.apache.curator.utils.CloseableUtils
@@ -85,6 +86,24 @@ trait Discoverable[T] {
     override def close(): Unit = cache.close()
   }
 
+}
+
+trait LeaderLike {
+  curator: ZooKeeperCurator =>
+
+  def path: String
+
+  abstract class Leadership extends LeaderSelectorListenerAdapter with Closeable {
+
+    val leaderSelector = new LeaderSelector(curator.zookeeperCuratorClient, path, this)
+
+    def start(): Unit = {
+      leaderSelector.start()
+      leaderSelector.autoRequeue()
+    }
+
+    override def close(): Unit = CloseableUtils.closeQuietly(leaderSelector)
+  }
 }
 
 trait RegisterableService[T] extends ZooKeeperCurator with Registerable[T]

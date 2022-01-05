@@ -10,10 +10,11 @@ import java.time.Instant
 import scala.io.StdIn
 import scala.util.Random
 
-trait HttpAnimalCreator {
+trait HttpCatCreator {
 
   def port: Int
   def address: String
+  def createYellowCat: Boolean
 
   def start(): Unit = {
     implicit val system = ActorSystem(Behaviors.empty, "animal-creator-system")
@@ -23,7 +24,13 @@ trait HttpAnimalCreator {
     val route =
       path("create") {
         get {
-          complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString))
+          complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, {
+            if (createYellowCat) {
+              "YELLOW Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
+            } else {
+              "Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
+            }
+          }))
         }
       }
 
