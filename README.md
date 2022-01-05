@@ -4,6 +4,8 @@ This repository is a proof of concept of using Zookeeper as a service discovery 
 
 Service discovery is a required characteristic in distributed systems. Microservices need to learn how to observer with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. 
 
+Another very equally important concept in distributed services is leadership among microservices. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
+
 ## Flow of information
 
 The following image represents a configuration sequence for a service provider and a service consumer by means of using Zookeeper.
@@ -15,7 +17,7 @@ The following image represents a configuration sequence for a service provider a
 The project is organized into three modules:
 
 * `common`: it represents a collection of common tools. In particular, it provides, an abstraction on how to get started via [Apache Curator](https://curator.apache.org/).
-* `service`: it represents the service provider that offers an endpoint to create "cats". "Cats" created here are not fancy or anything. 
+* `service`: it represents the service provider that offers an endpoint to create "cats". "Cats" created here are not fancy or anything. This service has a special function that will be only activated when the corresponding instance is has gained leadership over its kinds. This special function is the creation of yellow cats.
 * `discovery`: it represents the service consumer that calls on the service provider's endpoint to create cats.
 
 ## How to run
@@ -34,7 +36,7 @@ Run the service provider 1
 java -cp service/target/service-0.0.1.jar com.ubirch.service.App
 ```
 
-Run the service provider 2 (Optional)
+Run the service provider 2 (Optional but cool for leadership purposes) 
 ```bash
 java -cp service/target/service-0.0.1.jar com.ubirch.service.App2
 ```
@@ -46,9 +48,15 @@ java -cp discovery/target/discovery-0.0.1.jar com.ubirch.discovery.App
 
 ## How to see it in action
 
+### Service Discovery
+
 If you have all running in the sequence presented above, you will see that the service consumer will start outputing "cats".
 
 ![Cats Creation](assets/cat_creation.png)
 
 However, if you stop the service provider, you shall see that the discovery service detects these changes.
 ![Cat service gone](assets/cat_service_gone.png)
+
+### Leadership selection
+
+By default, the first application that gets registered on Zookeeper will be the leader of the pack. By running two instances of the cats creator, you will see how it is possible for the apps to take leadership, and relinquish when exiting the pack. 
