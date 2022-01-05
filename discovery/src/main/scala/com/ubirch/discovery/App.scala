@@ -55,7 +55,11 @@ object App extends LazyLogging {
             oldData.getPath.split("/").filter(_.nonEmpty).toList match {
               case List(path, app, id) =>
                 logger.warn("service gone=" + path + "/" + app + "/" + id)
-                currentCatURLs.set(Nil)
+                val newUrls = Discovery.serviceDiscovery.queryForInstances(catApp).asScala.filter(_.isEnabled).map { si =>
+                  val params = Map("scheme" -> "http".asInstanceOf[AnyRef], "port" -> si.getPort.asInstanceOf[AnyRef]).asJava
+                  new URL(si.buildUriSpec(params))
+                }.toList
+                currentCatURLs.set(newUrls)
               case _ =>
             }
           case CuratorCacheListener.Type.NODE_CHANGED =>
@@ -64,7 +68,7 @@ object App extends LazyLogging {
 
     global.scheduleWithFixedDelay(5 seconds, 2 seconds) {
       currentCatURLs.get().foreach { x =>
-        Try("Creating " + Source.fromURL(x.toString + "/create").getLines().mkString(" ")).map(println)
+        Try("Creating " + x.toString + " - " + Source.fromURL(x.toString + "/create").getLines().mkString(" ")).map(println)
       }
     }
 

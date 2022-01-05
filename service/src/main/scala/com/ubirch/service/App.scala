@@ -4,12 +4,7 @@ import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.utils.CloseableUtils
 import org.apache.curator.x.discovery.UriSpec
 
-object App {
-
-  def appPort = 8081
-  def appAddress = "localhost"
-  def appName = "cat"
-  def appDescription = "This is cat creator"
+class CatApp(appPort: Int, appAddress: String, appName: String, appDescription: String) {
 
   object Service extends RegisterableService[InstanceDetails] {
     override val path: String = "/services"
@@ -27,12 +22,6 @@ object App {
     override def address: String = appAddress
   }
 
-  def main(args: Array[String]): Unit = {
-    Service.zookeeperCuratorClient.start()
-    Service.serviceRegistry.start()
-    Http.start()
-  }
-
   def registerShutdownHooks(): Unit = {
     Runtime.getRuntime.addShutdownHook(new Thread() {
       override def run(): Unit = {
@@ -44,4 +33,28 @@ object App {
 
   registerShutdownHooks()
 
+}
+
+object App {
+  val cat = new CatApp(8081, "localhost", "cat", "This is a cat creator")
+
+  import cat._
+
+  def main(args: Array[String]): Unit = {
+    Service.zookeeperCuratorClient.start()
+    Service.serviceRegistry.start()
+    Http.start()
+  }
+}
+
+object App2 {
+  val cat = new CatApp(8082, "localhost", "cat", "This is a cat creator")
+
+  import cat._
+
+  def main(args: Array[String]): Unit = {
+    Service.zookeeperCuratorClient.start()
+    Service.serviceRegistry.start()
+    Http.start()
+  }
 }
