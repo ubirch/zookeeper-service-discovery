@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+participant ServiceProvider #99FF99
+participant Zookeeper #ffd966
+participant ServiceProvider_2 #9fc5e8
+
+ServiceProvider -> Zookeeper: creates connection
+ServiceProvider -> Zookeeper: registers itself
+ServiceProvider -> Zookeeper: offers itself to be leader
+... ...
+ServiceProvider_2 -> Zookeeper: creates connection
+ServiceProvider_2 -> Zookeeper: registers itself
+ServiceProvider_2 -> Zookeeper: offers itself to be leader
+... ...
+Zookeeper -> ServiceProvider: Receives leadership
+note left
+    Note that the leadership is kept until
+    the leader decides to relinquish, or
+    because stops serving.
+end note
+ServiceProvider -> ServiceProvider: Runs leader process
+ServiceProvider_2 -> ServiceProvider_2: Runs follower process
+... ...
+ServiceProvider -> Zookeeper: Relinquishes leadership
+Zookeeper -> ServiceProvider_2: Receives leadership
+ServiceProvider_2 -> ServiceProvider_2: Runs leader process
+ServiceProvider -> ServiceProvider: Runs follower process
+
+@enduml

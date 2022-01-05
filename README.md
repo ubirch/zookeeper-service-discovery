@@ -6,11 +6,15 @@ Service discovery is a required characteristic in distributed systems. Microserv
 
 Another very equally important concept in distributed services is leadership among microservices. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
 
-## Flow of information
+## Flow of information for a service discovery
 
 The following image represents a configuration sequence for a service provider and a service consumer by means of using Zookeeper.
 
 ![Sequence](assets/sequence.png)
+
+## Flow of information for leadership
+
+![Leadership](assets/leadership.png)
 
 ## Project structure
 
