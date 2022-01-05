@@ -68,7 +68,7 @@ object App extends LazyLogging {
 
     logger.info("Cat app discovered=" + currentCatURLs.get().size)
 
-    global.scheduleWithFixedDelay(2 seconds, 2 seconds) {
+    global.scheduleWithFixedDelay(2 seconds, 3 seconds) {
       currentCatURLs.get().foreach { x =>
         Try("Creating " + x.toString + " - " + Source.fromURL(x.toString + "/create").getLines().mkString(" ")).map(println)
       }
