@@ -1,5 +1,6 @@
 package com.ubirch.service
 
+import org.apache.curator.framework.recipes.cache.CuratorCache
 import org.apache.curator.framework.{ CuratorFramework, CuratorFrameworkFactory }
 import org.apache.curator.retry.ExponentialBackoffRetry
 import org.apache.curator.utils.CloseableUtils
@@ -60,6 +61,7 @@ trait Discoverable[T] {
 
   def path: String
   def discoverableRegistry: DiscoverableRegistry
+  def serviceDiscovery: ServiceDiscovery[T] = discoverableRegistry.serviceDiscovery
 
   class DiscoverableRegistry(implicit ct: ClassTag[T]) extends Closeable {
 
@@ -77,7 +79,12 @@ trait Discoverable[T] {
     override def close(): Unit = CloseableUtils.closeQuietly(serviceDiscovery)
   }
 
-  def serviceDiscovery: ServiceDiscovery[T] = discoverableRegistry.serviceDiscovery
+  class Watch() extends Closeable {
+    val cache: CuratorCache = CuratorCache.builder(curator.zookeeperCuratorClient, path).build()
+    def start(): Unit = cache.start()
+    override def close(): Unit = cache.close()
+  }
+
 }
 
 trait RegisterableService[T] extends ZooKeeperCurator with Registerable[T]
