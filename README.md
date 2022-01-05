@@ -35,17 +35,10 @@ Compile the demo
 mvn clean package
 ```
 
-Run the service provider 1
+Run as many service providers. Two or three are nice to see what happens. Increase the port.
 ```bash
 java -cp service/target/service-0.0.1.jar com.ubirch.service.App 8081
 ```
-
-Run the service provider 2 (Optional but cool for leadership purposes) 
-```bash
-java -cp service/target/service-0.0.1.jar com.ubirch.service.App 8082
-```
-
-You can run multiple if wanted. Just change the port.
 
 Run the service consumer
 ```bash
