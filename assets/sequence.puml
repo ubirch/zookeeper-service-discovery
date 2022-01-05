@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+participant ServiceProvider #99FF99
+participant Zookeeper #ffd966
+participant ServiceConsumer #9fc5e8
+
+note over ServiceConsumer, ServiceProvider
+Note that the ServiceProvider and ServiceConsumer don't have to follow
+this order.
+end note
+
+ServiceProvider -> Zookeeper: creates connection
+ServiceProvider -> Zookeeper: registers itself
+... ...
+ServiceConsumer -> Zookeeper: creates connection
+ServiceConsumer -> Zookeeper: registers listener on path
+... ...
+
+Zookeeper -> ServiceConsumer: calls back when updates available
+note left
+    - New ServiceProvider
+    - Removal of ServiceProvider
+end note
+
+@enduml
