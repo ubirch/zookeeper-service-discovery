@@ -2,7 +2,7 @@
 
 This repository is a proof of concept of using Zookeeper as a service discovery mechanism for microservices. Zookeeper is a highly reliable distributed service that enables microservices to control configurations, naming, and coordination of processes. You can learn more about it here:  https://zookeeper.apache.org/ and if you have some time for a video, here: https://youtu.be/Vv4HpLfqAz4.
 
-Service discovery is a required characteristic in distributed systems. Microservices need to learn how to observer with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. 
+Service discovery is a required characteristic in distributed systems. Microservices need to learn how to observe with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. A very noble aspect of this discovery is that consumer can be informed about changes in the provider, weather or not, they are not present, if their configuration changed, etc.
 
 Another very equally important concept in distributed services is leadership among microservices. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
 
@@ -49,7 +49,7 @@ java -cp discovery/target/discovery-0.0.1.jar com.ubirch.discovery.App
 
 ### Service Discovery
 
-If you have all running in the sequence presented above, you will see that the service consumer will start outputing "cats".
+If you have all running in the sequence presented above, you will see that the service consumer will start outputting "cats".
 
 ![Cats Creation](assets/cat_creation.png)
 
@@ -58,7 +58,7 @@ However, if you stop the service provider, you shall see that the discovery serv
 
 ### Leadership selection
 
-By default, the first application that gets registered on Zookeeper will be the leader of the pack. By running two instances of the cats creator, you will see how it is possible for the apps to take leadership, and relinquish when exiting the pack. 
+By default, the first application that gets registered on Zookeeper will be the leader of the pack. By running two instances of the cats' creator, you will see how it is possible for the apps to take leadership, and relinquish when exiting the pack. 
 
 Taking leadership
 
