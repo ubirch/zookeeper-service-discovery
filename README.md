@@ -2,18 +2,18 @@
 
 This repository is a proof of concept of using Zookeeper as a service discovery mechanism for microservices and leadership election. 
 
-Zookeeper is a highly reliable distributed service that enables microservices to control configurations, naming, and coordination of processes. You can learn more about it here:  https://zookeeper.apache.org/ and if you have some time for a video, here: https://youtu.be/Vv4HpLfqAz4.
+Zookeeper is a highly reliable distributed service that enables microservices to control configurations, naming, and coordination of processes. You can learn more about it here:  https://zookeeper.apache.org/doc/current/zookeeperOver.html and if you have some time for a video, here: https://youtu.be/Vv4HpLfqAz4.
 
-`Service discovery` is a required characteristic in distributed systems. Microservices need to learn how to observe with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. A very noble aspect of this discovery is that consumer can be informed about changes in the provider, weather or not, they are not present, if their configuration changed, etc.
+`Service discovery` is a required characteristic in distributed systems. Microservices need to learn how to observe with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. A very noble aspect of this discovery is that consumer can be informed about changes in the provider, whether they are not present, or if their configuration changed, etc.
 
-Another very equally important concept in distributed services is `leadership among microservices`. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
+Another very equally important concept in distributed services is `leadership among microservices`. That's to say that among the instances of one particular microservice, there is a leader instance, which is in charge of executing a particular set of tasks, which are not meant for all instances to execute.
 
 ## Project structure
 
 The project is organized into three modules:
 
 * `common`: it represents a collection of common tools. In particular, it provides, an abstraction on how to get started via [Apache Curator](https://curator.apache.org/).
-* `service`: it represents the service provider that offers an endpoint "create" to create "cats". "Cats" created here are not fancy or anything. This service has a special function that will be only activated when the corresponding instance is has gained leadership over its kinds. This special function is the creation of yellow cats, otherwise, red cats are created.
+* `service`: it represents the service provider that offers an endpoint "create" to create "cats". "Cats" created here are not fancy or anything, they just represent "something" that is processed. This service has a special function that will be only activated when the corresponding instance has gained leadership over its kinds. This `special function` is the creation of `yellow cats`, otherwise, `red cats` are created.
 * `discovery`: it represents the service consumer that calls on the service provider's endpoint to create cats.
 
 ## Flow of information for a service discovery
@@ -36,17 +36,18 @@ Have Zookeeper running.
 
 > for extra help in visualizing zookeeper, you can use [Pretty Zoo](https://github.com/vran-dev/PrettyZoo)
 
-Compile the demo
+Compile the code
 ```bash
 mvn clean package
 ```
 
-Run as many service providers. Two or three are nice to see what happens. Increase the port.
+Run as many service providers as desired. Two or three are nice to see what happens in a more organized way. Change the port accordingly.
+
 ```bash
 java -cp service/target/service-0.0.1.jar com.ubirch.service.App 8081
 ```
 
-Run the service consumer
+Run the service consumer - the one that will call the service provider. - Many instance can also be started.
 ```bash
 java -cp discovery/target/discovery-0.0.1.jar com.ubirch.discovery.App
 ```
