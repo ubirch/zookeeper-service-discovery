@@ -25,11 +25,10 @@ trait HttpCatCreator {
       path("create") {
         get {
           complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, {
-            if (createYellowCat) {
+            if (createYellowCat)
               "YELLOW Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
-            } else {
+            else
               "RED Cat :: " + Random.nextInt((99999 - 10000) + 1).abs + " @ " + Instant.now().toString
-            }
           }))
         }
       }
