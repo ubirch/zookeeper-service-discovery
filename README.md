@@ -1,10 +1,12 @@
-# Ubirch Zookeeper Service Discovery
+# Ubirch Zookeeper Service Discovery and Leadership Election
 
-This repository is a proof of concept of using Zookeeper as a service discovery mechanism for microservices. Zookeeper is a highly reliable distributed service that enables microservices to control configurations, naming, and coordination of processes. You can learn more about it here:  https://zookeeper.apache.org/ and if you have some time for a video, here: https://youtu.be/Vv4HpLfqAz4.
+This repository is a proof of concept of using Zookeeper as a service discovery mechanism for microservices and leadership election. 
 
-Service discovery is a required characteristic in distributed systems. Microservices need to learn how to observe with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. A very noble aspect of this discovery is that consumer can be informed about changes in the provider, weather or not, they are not present, if their configuration changed, etc.
+Zookeeper is a highly reliable distributed service that enables microservices to control configurations, naming, and coordination of processes. You can learn more about it here:  https://zookeeper.apache.org/ and if you have some time for a video, here: https://youtu.be/Vv4HpLfqAz4.
 
-Another very equally important concept in distributed services is leadership among microservices. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
+`Service discovery` is a required characteristic in distributed systems. Microservices need to learn how to observe with which systems they can talk based on their needs, or availability. Service discovery is the process that is used for services to register their presence, and available controls; and for services to use registered services. A very noble aspect of this discovery is that consumer can be informed about changes in the provider, weather or not, they are not present, if their configuration changed, etc.
+
+Another very equally important concept in distributed services is `leadership among microservices`. That's to say that among the instances of one particular microservice, there is a leader instances, which is in charge of executing a particular task, which is only meant for everybody to execute.
 
 ## Project structure
 
@@ -29,6 +31,10 @@ The following image represents a configuration sequence for a service provider a
 Download Zookeeper from https://zookeeper.apache.org/. At the time of writing this document, the version used was: 3.7.0. Follow the instructions here to get started with Zookeeper. https://zookeeper.apache.org/doc/current/zookeeperStarted.html.
 
 Have Zookeeper running.
+
+`bin/zkServer.sh start`
+
+> for extra help in visualizing zookeeper, you can use [Pretty Zoo](https://github.com/vran-dev/PrettyZoo)
 
 Compile the demo
 ```bash
