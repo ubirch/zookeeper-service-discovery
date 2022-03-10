@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="410px" preserveAspectRatio="none" style="width:574px;height:410px;background:#FFFFFF;" version="1.1" viewBox="0 0 574 410" width="574px" zoomAndPan="magnify"><defs><filter height="300%" id="fspsmv9b3ea97" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><line style="stroke:#A80036;stroke-width:1.0;" x1="71" x2="71" y1="40.2969" y2="162.8281"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="71" x2="71" y1="162.8281" y2="203.6328"/><line style="stroke:#A80036;stroke-width:1.0;" x1="71" x2="71" y1="203.6328" y2="261.8984"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="71" x2="71" y1="261.8984" y2="302.7031"/><line style="stroke:#A80036;stroke-width:1.0;" x1="71" x2="71" y1="302.7031" y2="366.9688"/><line style="stroke:#A80036;stroke-width:1.0;" x1="231" x2="231" y1="40.2969" y2="162.8281"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="231" x2="231" y1="162.8281" y2="203.6328"/><line style="stroke:#A80036;stroke-width:1.0;" x1="231" x2="231" y1="203.6328" y2="261.8984"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="231" x2="231" y1="261.8984" y2="302.7031"/><line style="stroke:#A80036;stroke-width:1.0;" x1="231" x2="231" y1="302.7031" y2="366.9688"/><line style="stroke:#A80036;stroke-width:1.0;" x1="492" x2="492" y1="40.2969" y2="162.8281"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="492" x2="492" y1="162.8281" y2="203.6328"/><line style="stroke:#A80036;stroke-width:1.0;" x1="492" x2="492" y1="203.6328" y2="261.8984"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="492" x2="492" y1="261.8984" y2="302.7031"/><line style="stroke:#A80036;stroke-width:1.0;" x1="492" x2="492" y1="302.7031" y2="366.9688"/><rect fill="#99FF99" filter="url(#fspsmv9b3ea97)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="126" x="6" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="13" y="24.9951">ServiceProvider</text><rect fill="#99FF99" filter="url(#fspsmv9b3ea97)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="126" x="6" y="365.9688"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="13" y="385.9639">ServiceProvider</text><rect fill="#FFD966" filter="url(#fspsmv9b3ea97)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="92" x="183" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78" x="190" y="24.9951">Zookeeper</text><rect fill="#FFD966" filter="url(#fspsmv9b3ea97)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="92" x="183" y="365.9688"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78" x="190" y="385.9639">Zookeeper</text><rect fill="#FEFECE" filter="url(#fspsmv9b3ea97)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="140" x="420" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="427" y="24.9951">ServiceConsumer</text><rect fill="#FEFECE" filter="url(#fspsmv9b3ea97)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="140" x="420" y="365.9688"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="427" y="385.9639">ServiceConsumer</text><path d="M5,55.2969 L5,95.2969 L558,95.2969 L558,65.2969 L548,55.2969 L5,55.2969 " fill="#FBFB77" filter="url(#fspsmv9b3ea97)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M548,55.2969 L548,65.2969 L558,65.2969 L548,55.2969 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="472" x="39" y="72.3638">Note that the ServiceProvider and ServiceConsumer don't have to follow</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="39" y="87.4966">this order.</text><polygon fill="#A80036" points="219,121.6953,229,125.6953,219,129.6953,223,125.6953" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="71" x2="225" y1="125.6953" y2="125.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="78" y="120.6294">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="91" y="120.6294">creates connection</text><polygon fill="#A80036" points="219,150.8281,229,154.8281,219,158.8281,223,154.8281" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="71" x2="225" y1="154.8281" y2="154.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="78" y="149.7622">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="91" y="149.7622">registers itself</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="283.5" y="187.0386"/><polygon fill="#A80036" points="242,220.7656,232,224.7656,242,228.7656,238,224.7656" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="236" x2="491" y1="224.7656" y2="224.7656"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="248" y="219.6997">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="261" y="219.6997">creates connection</text><polygon fill="#A80036" points="242,249.8984,232,253.8984,242,257.8984,238,253.8984" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="236" x2="491" y1="253.8984" y2="253.8984"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="248" y="248.8325">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163" x="261" y="248.8325">registers listener on path</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="283.5" y="286.1089"/><polygon fill="#A80036" points="480,332.4023,490,336.4023,480,340.4023,484,336.4023" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="231" x2="486" y1="336.4023" y2="336.4023"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="238" y="331.3364">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="224" x="251" y="331.3364">calls back when updates available</text><path d="M11,307.7031 L11,347.7031 L222,347.7031 L222,317.7031 L212,307.7031 L11,307.7031 " fill="#FBFB77" filter="url(#fspsmv9b3ea97)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M212,307.7031 L212,317.7031 L222,317.7031 L212,307.7031 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144" x="17" y="324.77">- New ServiceProvider</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="190" x="17" y="339.9028">- Removal of ServiceProvider</text><!--MD5=[f601c76d5c349076622022854e384619]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+participant ServiceProvider #99FF99
+participant Zookeeper #ffd966
+participant ServiceConsumer
+
+note over ServiceConsumer, ServiceProvider
+Note that the ServiceProvider and ServiceConsumer don't have to follow
+this order.
+end note
+
+ServiceProvider -> Zookeeper: creates connection
+ServiceProvider -> Zookeeper: registers itself
+... ...
+ServiceConsumer -> Zookeeper: creates connection
+ServiceConsumer -> Zookeeper: registers listener on path
+... ...
+
+Zookeeper -> ServiceConsumer: calls back when updates available
+note left
+    - New ServiceProvider
+    - Removal of ServiceProvider
+end note
+
+@enduml
+
+@startuml
+
+autonumber
+
+participant ServiceProvider #99FF99
+participant Zookeeper #ffd966
+participant ServiceConsumer
+
+note over ServiceConsumer, ServiceProvider
+Note that the ServiceProvider and ServiceConsumer don't have to follow
+this order.
+end note
+
+ServiceProvider -> Zookeeper: creates connection
+ServiceProvider -> Zookeeper: registers itself
+... ...
+ServiceConsumer -> Zookeeper: creates connection
+ServiceConsumer -> Zookeeper: registers listener on path
+... ...
+
+Zookeeper -> ServiceConsumer: calls back when updates available
+note left
+    - New ServiceProvider
+    - Removal of ServiceProvider
+end note
+
+@enduml
+
+PlantUML version 1.2022.1(Tue Feb 01 19:19:58 CET 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
